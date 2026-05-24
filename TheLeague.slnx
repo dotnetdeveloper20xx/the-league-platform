@@ -1,0 +1,34 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TheLeague.Host/TheLeague.Host.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/">
+    <Project Path="src/Modules/TheLeague.Modules.Analytics/TheLeague.Modules.Analytics.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Clubs/TheLeague.Modules.Clubs.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Communications/TheLeague.Modules.Communications.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Competitions/TheLeague.Modules.Competitions.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Documents/TheLeague.Modules.Documents.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Equipment/TheLeague.Modules.Equipment.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Events/TheLeague.Modules.Events.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Facilities/TheLeague.Modules.Facilities.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Identity/TheLeague.Modules.Identity.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Members/TheLeague.Modules.Members.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Memberships/TheLeague.Modules.Memberships.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Payments/TheLeague.Modules.Payments.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Programs/TheLeague.Modules.Programs.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Sessions/TheLeague.Modules.Sessions.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Shop/TheLeague.Modules.Shop.csproj" />
+    <Project Path="src/Modules/TheLeague.Modules.Subscriptions/TheLeague.Modules.Subscriptions.csproj" />
+  </Folder>
+  <Folder Name="/src/TheLeague.Shared/">
+    <Project Path="src/TheLeague.Shared/TheLeague.Shared.Contracts/TheLeague.Shared.Contracts.csproj" />
+    <Project Path="src/TheLeague.Shared/TheLeague.Shared.Domain/TheLeague.Shared.Domain.csproj" />
+    <Project Path="src/TheLeague.Shared/TheLeague.Shared.Infrastructure/TheLeague.Shared.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TheLeague.Tests.Architecture/TheLeague.Tests.Architecture.csproj" />
+    <Project Path="tests/TheLeague.Tests.Integration/TheLeague.Tests.Integration.csproj" />
+    <Project Path="tests/TheLeague.Tests.Properties/TheLeague.Tests.Properties.csproj" />
+    <Project Path="tests/TheLeague.Tests.Unit/TheLeague.Tests.Unit.csproj" />
+  </Folder>
+</Solution>

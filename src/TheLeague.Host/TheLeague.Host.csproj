@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.8.41" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.20" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.20" />
+    <PackageReference Include="Polly" Version="8.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheLeague.Shared\TheLeague.Shared.Infrastructure\TheLeague.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Identity\TheLeague.Modules.Identity.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Clubs\TheLeague.Modules.Clubs.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Members\TheLeague.Modules.Members.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Memberships\TheLeague.Modules.Memberships.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Sessions\TheLeague.Modules.Sessions.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Events\TheLeague.Modules.Events.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Competitions\TheLeague.Modules.Competitions.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Payments\TheLeague.Modules.Payments.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Facilities\TheLeague.Modules.Facilities.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Equipment\TheLeague.Modules.Equipment.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Programs\TheLeague.Modules.Programs.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Communications\TheLeague.Modules.Communications.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Analytics\TheLeague.Modules.Analytics.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Shop\TheLeague.Modules.Shop.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Documents\TheLeague.Modules.Documents.csproj" />
+    <ProjectReference Include="..\Modules\TheLeague.Modules.Subscriptions\TheLeague.Modules.Subscriptions.csproj" />
+  </ItemGroup>
+
+</Project>
