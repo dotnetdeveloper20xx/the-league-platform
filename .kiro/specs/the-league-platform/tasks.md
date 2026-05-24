@@ -98,9 +98,9 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
 - [ ] 2. Checkpoint - Foundation complete
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 3. Core Domain Modules — Clubs, Members, Memberships
+- [x] 3. Core Domain Modules — Clubs, Members, Memberships
 
-  - [ ] 3.1 Implement Clubs Module
+  - [x] 3.1 Implement Clubs Module
     - Create `ClubsDbContext` with `Club`, `ClubSettings`, `SportConfiguration` entities
     - Implement `CreateClubCommand` generating unique ClubId and slug
     - Implement `UpdateClubCommand` for profile, branding (colors, logo), contact info
@@ -109,7 +109,7 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - Implement club settings CRUD (payment provider config, notification settings, locale)
     - _Requirements: 1.5, 5.5, 28.1, 28.2, 28.3, 28.4, 28.5, 28.6_
 
-  - [ ] 3.2 Implement Subscriptions Module
+  - [x] 3.2 Implement Subscriptions Module
     - Create `SubscriptionsDbContext` with `SubscriptionTier`, `ClubSubscription`, `Trial`, `UsageRecord`, `AddOn` entities
     - Implement 4 tiers: Free (£0), Starter (£29), Pro (£79), Enterprise (£199) with feature gates
     - Implement 14-day free trial with Pro-level access
@@ -125,7 +125,7 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - **Property 8: Usage Limit Enforcement** — verify actions blocked when tier limits exceeded
     - **Validates: Requirements 4.5, 4.7, 4.8**
 
-  - [ ] 3.4 Implement Members Module
+  - [x] 3.4 Implement Members Module
     - Create `MembersDbContext` with `Member`, `FamilyMember`, `CustomFieldDefinition`, `MemberNote`, `MemberDocument` entities
     - Implement CRUD with search (name/email), filter (status), pagination (default 20, max 100)
     - Implement auto-generated member number: "MBR-{N}" zero-padded (min 3 digits), unique per club
@@ -143,7 +143,7 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - **Property 12: Custom Field Type Validation** — verify type-conforming values accepted, non-conforming rejected
     - **Validates: Requirements 5.6, 5.7, 6.2, 6.5, 6.6, 6.8, 6.9**
 
-  - [ ] 3.6 Implement Memberships Module
+  - [x] 3.6 Implement Memberships Module
     - Create `MembershipsDbContext` with `MembershipType`, `Membership`, `MembershipDiscount`, `MembershipFreeze`, `MembershipWaitlist`, `GuestPass` entities
     - Implement membership type CRUD: name, description, pricing, billing cycle, age limits, capacity
     - Implement billing cycles: Weekly, Fortnightly, Monthly, Quarterly, Biannual, Annual, Lifetime, OneTime, PayAsYouGo
@@ -159,9 +159,9 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - **Property 14: Discount Calculation Correctness** — verify percentage and fixed discounts calculated correctly, never below zero, 2dp
     - **Validates: Requirements 7.3, 7.4, 7.8**
 
-- [ ] 4. Core Domain Modules — Sessions, Events, Competitions
+- [x] 4. Core Domain Modules — Sessions, Events, Competitions
 
-  - [ ] 4.1 Implement Sessions Module
+  - [x] 4.1 Implement Sessions Module
     - Create `SessionsDbContext` with `Session`, `RecurringSchedule`, `SessionBooking`, `RecurringBooking`, `Waitlist`, `Attendance` entities
     - Implement session CRUD: title, category, venue, date/time, duration (15-480 min), capacity (1-500), fee
     - Implement recurring schedule templates (day-of-week patterns, up to 12 weeks horizon)
@@ -177,7 +177,7 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - **Property 17: Cancellation Deadline Enforcement** — verify accepted iff request time ≤ (T - D hours)
     - **Validates: Requirements 8.3, 8.4, 8.5, 8.6**
 
-  - [ ] 4.3 Implement Events Module
+  - [x] 4.3 Implement Events Module
     - Create `EventsDbContext` with `Event`, `EventSeries`, `EventSession`, `EventTicket`, `EventRSVP`, `EventRegistration` entities
     - Implement event CRUD: title (1-200 chars), type, start/end datetime, capacity
     - Implement event types: Social, Tournament, AGM, Training, Fundraiser, Competition, Meeting, Presentation, Other
@@ -193,7 +193,7 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - **Property 18: Event Lifecycle State Machine** — verify only valid transitions succeed per defined paths
     - **Validates: Requirements 9.7**
 
-  - [ ] 4.5 Implement Competitions Module
+  - [x] 4.5 Implement Competitions Module
     - Create `CompetitionsDbContext` with `Season`, `Competition`, `CompetitionTeam`, `CompetitionParticipant`, `Match`, `MatchEvent`, `MatchLineup`, `CompetitionStanding` entities
     - Implement competition types: League, Tournament, Cup, Friendly, RoundRobin, Knockout, Championship
     - Implement season management with start/end dates
@@ -213,9 +213,9 @@ Full production-grade rebuild of The League — a multi-tenant SaaS platform for
     - **Property 22: Match Status State Machine** — verify only valid transitions per defined set
     - **Validates: Requirements 10.4, 10.6, 10.8, 10.9**
 
-- [ ] 5. Core Domain Modules — Payments
+- [x] 5. Core Domain Modules — Payments
 
-  - [ ] 5.1 Implement Payments Module
+  - [x] 5.1 Implement Payments Module
     - Create `PaymentsDbContext` with `Payment`, `Invoice`, `InvoiceLineItem`, `PaymentPlan`, `PaymentInstallment`, `MemberBalance`, `BalanceTransaction`, `Refund`, `Fee`, `ChartOfAccount`, `JournalEntry` entities
     - Implement payment processing: Stripe, PayPal, GoCardless, BankTransfer, Cash, Cheque
     - Implement Stripe Connect with configurable platform fee (1-2%, min £0.30)
