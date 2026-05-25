@@ -1,0 +1,20 @@
+<div class="min-h-screen flex items-center justify-center bg-base-200">
+  <div class="card bg-base-100 shadow-xl max-w-md w-full mx-4">
+    <div class="card-body items-center text-center">
+      <div class="text-error mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </svg>
+      </div>
+      <h2 class="card-title text-2xl">Access Denied</h2>
+      <p class="text-base-content/70 mt-2">
+        You do not have permission to access this page. Please contact your administrator if you believe this is an error.
+      </p>
+      <div class="card-actions mt-6">
+        <a [routerLink]="redirectLink" class="btn btn-primary">
+          {{ redirectLabel }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="drawer lg:drawer-open">
+  <input id="admin-drawer" type="checkbox" class="drawer-toggle" [checked]="sidebarOpen()" />
+
+  <!-- Main Content -->
+  <div class="drawer-content flex flex-col">
+    <!-- Header -->
+    <header class="navbar bg-base-100 border-b border-base-300 lg:hidden">
+      <div class="flex-none">
+        <label for="admin-drawer" class="btn btn-square btn-ghost" (click)="toggleSidebar()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+      </div>
+      <div class="flex-1">
+        <span class="text-lg font-bold">The League Admin</span>
+      </div>
+      <div class="flex-none gap-2">
+        <span class="text-sm">{{ authService.user()?.name }}</span>
+        <button class="btn btn-ghost btn-sm" (click)="logout()">Logout</button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-1 p-6 bg-base-200">
+      <router-outlet />
+    </main>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="drawer-side z-40">
+    <label for="admin-drawer" class="drawer-overlay" (click)="toggleSidebar()"></label>
+    <aside class="w-64 min-h-full bg-neutral text-neutral-content flex flex-col">
+      <!-- Sidebar Header -->
+      <div class="p-4 border-b border-neutral-focus">
+        <h1 class="text-xl font-bold">The League</h1>
+        <p class="text-xs opacity-70">Platform Administration</p>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 p-4">
+        <ul class="menu menu-sm gap-1">
+          @for (item of menuItems; track item.route) {
+            <li>
+              <a [routerLink]="item.route" routerLinkActive="active" class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon" />
+                </svg>
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="p-4 border-t border-neutral-focus">
+        <div class="flex items-center gap-3">
+          <div class="avatar placeholder">
+            <div class="bg-neutral-focus text-neutral-content rounded-full w-8">
+              <span class="text-xs">{{ authService.user()?.name?.charAt(0) }}</span>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium truncate">{{ authService.user()?.name }}</p>
+            <p class="text-xs opacity-70 truncate">{{ authService.user()?.email }}</p>
+          </div>
+          <button class="btn btn-ghost btn-xs" (click)="logout()" title="Logout">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="drawer lg:drawer-open">
+  <input id="club-drawer" type="checkbox" class="drawer-toggle" [checked]="sidebarOpen()" />
+
+  <!-- Main Content -->
+  <div class="drawer-content flex flex-col">
+    <!-- Header -->
+    <header class="navbar bg-base-100 border-b border-base-300">
+      <div class="flex-none lg:hidden">
+        <label for="club-drawer" class="btn btn-square btn-ghost" (click)="toggleSidebar()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+      </div>
+      <div class="flex-1">
+        <span class="text-lg font-bold lg:hidden">Club Manager</span>
+      </div>
+      <div class="flex-none gap-2">
+        <!-- Notifications -->
+        <button class="btn btn-ghost btn-circle" title="Notifications">
+          <div class="indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span class="badge badge-xs badge-primary indicator-item"></span>
+          </div>
+        </button>
+
+        <!-- User Menu -->
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost gap-2">
+            <div class="avatar placeholder">
+              <div class="bg-primary text-primary-content rounded-full w-8">
+                <span class="text-xs">{{ authService.user()?.name?.charAt(0) }}</span>
+              </div>
+            </div>
+            <span class="hidden sm:inline text-sm">{{ authService.user()?.name }}</span>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-lg">
+            <li><a routerLink="/club/settings">Settings</a></li>
+            <li><a (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-1 p-6 bg-base-200">
+      <router-outlet />
+    </main>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="drawer-side z-40">
+    <label for="club-drawer" class="drawer-overlay" (click)="toggleSidebar()"></label>
+    <aside class="w-64 min-h-full bg-base-100 border-r border-base-300 flex flex-col">
+      <!-- Club Header -->
+      <div class="p-4 border-b border-base-300">
+        <div class="flex items-center gap-3">
+          <div class="avatar placeholder">
+            <div class="bg-primary text-primary-content rounded-lg w-10">
+              <span class="text-lg font-bold">C</span>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="text-sm font-bold truncate">Club Name</h2>
+            <p class="text-xs opacity-60">Club Manager</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 overflow-y-auto p-2">
+        <ul class="menu menu-sm gap-0.5">
+          @for (item of menuItems; track item.route) {
+            <li>
+              <a [routerLink]="item.route" routerLinkActive="active" class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon" />
+                </svg>
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>

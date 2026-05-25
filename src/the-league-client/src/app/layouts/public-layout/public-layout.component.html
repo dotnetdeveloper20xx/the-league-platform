@@ -1,0 +1,28 @@
+<div class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="navbar bg-base-100 shadow-sm border-b border-base-300">
+    <div class="navbar-start">
+      <a routerLink="/" class="btn btn-ghost text-xl font-bold">The League</a>
+    </div>
+    <div class="navbar-end gap-2">
+      <a routerLink="/auth/login" class="btn btn-ghost btn-sm">Login</a>
+      <a routerLink="/auth/register" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="flex-1">
+    <router-outlet />
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer-center p-6 bg-base-200 text-base-content border-t border-base-300">
+    <div>
+      <p class="font-bold text-lg">The League</p>
+      <p class="text-sm opacity-70">Multi-sport club management platform</p>
+    </div>
+    <div>
+      <p class="text-xs opacity-50">&copy; {{ currentYear }} The League. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
