@@ -5,10 +5,18 @@ using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using TheLeague.Shared.Contracts.Messaging;
 using TheLeague.Shared.Contracts.Services;
+using TheLeague.Shared.Infrastructure.Audit;
 using TheLeague.Shared.Infrastructure.Authorization;
 using TheLeague.Shared.Infrastructure.Behaviours;
 using TheLeague.Shared.Infrastructure.Caching;
+using TheLeague.Shared.Infrastructure.Integrations;
+using TheLeague.Shared.Infrastructure.Jobs;
 using TheLeague.Shared.Infrastructure.Messaging;
+using TheLeague.Shared.Infrastructure.Notifications;
+using TheLeague.Shared.Infrastructure.Onboarding;
+using TheLeague.Shared.Infrastructure.Reporting;
+using TheLeague.Shared.Infrastructure.Revenue;
+using TheLeague.Shared.Infrastructure.Search;
 using TheLeague.Shared.Infrastructure.Tenancy;
 
 namespace TheLeague.Shared.Infrastructure;
@@ -59,6 +67,38 @@ public static class ServiceCollectionExtensions
         // Authorization
         services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
         services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+
+        // SignalR
+        services.AddSignalR();
+
+        // Notifications
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IWebhookService, WebhookService>();
+
+        // Audit and Compliance
+        services.AddSingleton<IAuditService, AuditService>();
+        services.AddScoped<IGdprService, GdprService>();
+        services.AddScoped<IDataRetentionService, DataRetentionService>();
+
+        // Reporting
+        services.AddScoped<IReportService, ReportService>();
+
+        // Integrations
+        services.AddScoped<IIntegrationService, IntegrationService>();
+        services.AddScoped<IGoCardlessService, MockGoCardlessService>();
+
+        // Onboarding
+        services.AddScoped<IOnboardingService, OnboardingService>();
+
+        // Background Jobs
+        services.AddScoped<IBackgroundJobService, BackgroundJobService>();
+
+        // Search
+        services.AddScoped<ISearchService, SearchService>();
+
+        // Revenue
+        services.AddScoped<ISponsorService, SponsorService>();
+        services.AddScoped<ICheckInService, CheckInService>();
 
         return services;
     }

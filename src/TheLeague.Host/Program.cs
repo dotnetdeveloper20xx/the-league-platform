@@ -1,4 +1,5 @@
 using TheLeague.Shared.Infrastructure.Middleware;
+using TheLeague.Shared.Infrastructure.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,10 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 });
+
+// SignalR Hubs
+app.MapHub<NotificationHub>("/hubs/notifications");
+app.MapHub<MatchCentreHub>("/hubs/match-centre");
 
 app.Run();
 
