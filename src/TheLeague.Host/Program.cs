@@ -197,6 +197,26 @@ app.MapHealthChecks("/health");
 app.MapHub<NotificationHub>("/hubs/notifications");
 app.MapHub<MatchCentreHub>("/hubs/match-centre");
 
+// Database Migrations & Seeding (Development only)
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        // Run EF Core migrations for all module DbContexts
+        await TheLeague.Host.Migrations.MigrationRunner.RunMigrationsAsync(scope.ServiceProvider);
+
+        // Seed demo data
+        await TheLeague.Host.Seeding.DatabaseSeeder.SeedAsync(app.Services);
+    }
+    catch (Exception ex)
+    {
+        logger.LogWarning(ex, "Database migration/seeding skipped (database may not be available): {Message}", ex.Message);
+    }
+}
+
 Log.Information("The League Platform started on {Urls}", string.Join(", ", app.Urls));
 
 app.Run();
