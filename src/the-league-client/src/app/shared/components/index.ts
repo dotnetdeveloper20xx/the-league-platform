@@ -8,3 +8,4 @@ export { SkeletonLoaderComponent } from './skeleton-loader/skeleton-loader.compo
 export { EmptyStateComponent } from './empty-state/empty-state.component';
 export { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 export { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+export { OfflineIndicatorComponent } from './offline-indicator/offline-indicator.component';

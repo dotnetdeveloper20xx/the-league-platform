@@ -1,0 +1,43 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/TheLeague.Host/Dockerfile
+    ports:
+      - "7000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TheLeagueDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__Redis=redis:6379
+    depends_on:
+      - sqlserver
+      - redis
+
+  client:
+    build:
+      context: src/the-league-client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong!Passw0rd
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"

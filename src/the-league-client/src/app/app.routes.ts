@@ -30,6 +30,14 @@ export const routes: Routes = [
     loadChildren: () => import('./features/portal/portal.routes').then(m => m.PORTAL_ROUTES)
   },
   {
+    path: 'match/:id',
+    loadComponent: () => import('./features/match-centre/match-centre.component').then(m => m.MatchCentreComponent)
+  },
+  {
+    path: 'onboarding',
+    loadComponent: () => import('./features/public/onboarding/onboarding.component').then(m => m.OnboardingComponent)
+  },
+  {
     path: 'unauthorized',
     loadComponent: () => import('./layouts/unauthorized/unauthorized.component').then(m => m.UnauthorizedComponent)
   },
