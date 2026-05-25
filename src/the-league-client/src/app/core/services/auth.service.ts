@@ -1,4 +1,5 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthResponse, AuthUser, UserRole } from '../models/auth.model';
@@ -10,15 +11,18 @@ export class AuthService {
   private readonly TOKEN_KEY = 'access_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private readonly USER_KEY = 'auth_user';
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly http = inject(HttpClient);
+
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
 
   private currentUser = signal<AuthUser | null>(this.loadUser());
 
   readonly user = this.currentUser.asReadonly();
   readonly userRole = computed(() => this.currentUser()?.role ?? '' as UserRole);
 
-  constructor(private readonly http: HttpClient) {}
-
   getAccessToken(): string | null {
+    if (!this.isBrowser) return null;
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
@@ -27,6 +31,7 @@ export class AuthService {
   }
 
   setAuth(response: AuthResponse): void {
+    if (!this.isBrowser) return;
     localStorage.setItem(this.TOKEN_KEY, response.accessToken);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, response.refreshToken);
     localStorage.setItem(this.USER_KEY, JSON.stringify(response.user));
@@ -34,11 +39,12 @@ export class AuthService {
   }
 
   refreshToken(): Observable<AuthResponse> {
-    const refreshToken = localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    const refreshToken = this.isBrowser ? localStorage.getItem(this.REFRESH_TOKEN_KEY) : null;
     return this.http.post<AuthResponse>('/api/auth/refresh', { refreshToken });
   }
 
   logout(): void {
+    if (!this.isBrowser) return;
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
@@ -46,6 +52,7 @@ export class AuthService {
   }
 
   private loadUser(): AuthUser | null {
+    if (!this.isBrowser) return null;
     const stored = localStorage.getItem(this.USER_KEY);
     return stored ? JSON.parse(stored) : null;
   }
