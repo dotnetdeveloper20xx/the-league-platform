@@ -1,8 +1,8 @@
 <div class="min-h-screen flex flex-col bg-base-200">
   <!-- Top Navigation Bar -->
-  <header class="navbar bg-base-100 shadow-sm border-b border-base-300 sticky top-0 z-30">
+  <header class="navbar gradient-header text-white shadow-sm sticky top-0 z-30">
     <div class="navbar-start">
-      <a routerLink="/portal/dashboard" class="btn btn-ghost text-lg font-bold">The League</a>
+      <a routerLink="/portal/dashboard" class="btn btn-ghost text-white text-lg font-bold">The League</a>
     </div>
 
     <!-- Desktop Navigation -->
@@ -10,7 +10,7 @@
       <ul class="menu menu-horizontal px-1 gap-1">
         @for (item of menuItems; track item.route) {
           <li>
-            <a [routerLink]="item.route" routerLinkActive="active" class="text-sm">
+            <a [routerLink]="item.route" routerLinkActive="active" class="text-sm text-white/90 hover:text-white hover:bg-white/10">
               {{ item.label }}
             </a>
           </li>
@@ -21,9 +21,9 @@
     <div class="navbar-end gap-2">
       <!-- User Avatar & Name -->
       <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost gap-2">
+        <div tabindex="0" role="button" class="btn btn-ghost text-white gap-2">
           <div class="avatar placeholder">
-            <div class="bg-primary text-primary-content rounded-full w-8">
+            <div class="bg-white/20 text-white rounded-full w-8">
               <span class="text-xs">{{ authService.user()?.name?.charAt(0) }}</span>
             </div>
           </div>
@@ -37,7 +37,7 @@
       </div>
 
       <!-- Mobile Hamburger -->
-      <button class="btn btn-ghost btn-square lg:hidden" (click)="toggleMobileMenu()">
+      <button class="btn btn-ghost btn-square text-white lg:hidden" (click)="toggleMobileMenu()">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
