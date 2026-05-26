@@ -95,7 +95,7 @@ public class EventsController : ControllerBase
 
     [HttpPost("{id:guid}/register")]
     [RequireRole(Roles.Member, Roles.ClubManager)]
-    public async Task<IActionResult> Register(Guid id, [FromBody] RegisterRequest request, CancellationToken ct)
+    public async Task<IActionResult> Register(Guid id, [FromBody] EventRegistrationRequest request, CancellationToken ct)
     {
         var command = new RegisterForEventCommand(
             id, request.MemberId, request.IsTicketPurchase,
@@ -165,7 +165,7 @@ public record UpdateEventRequest(
     bool AllowRsvp,
     int CancellationDeadlineHours = 48);
 
-public record RegisterRequest(
+public record EventRegistrationRequest(
     Guid MemberId,
     bool IsTicketPurchase,
     RSVPResponse? RsvpResponse = null,

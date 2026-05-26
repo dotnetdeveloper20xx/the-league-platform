@@ -40,7 +40,7 @@ export class AuthService {
 
   refreshToken(): Observable<AuthResponse> {
     const refreshToken = this.isBrowser ? localStorage.getItem(this.REFRESH_TOKEN_KEY) : null;
-    return this.http.post<AuthResponse>('/api/auth/refresh', { refreshToken });
+    return this.http.post<AuthResponse>('/api/v1/auth/refresh', { refreshToken });
   }
 
   logout(): void {

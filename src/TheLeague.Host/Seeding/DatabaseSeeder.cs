@@ -3,16 +3,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TheLeague.Modules.Clubs.Domain;
+using TheLeague.Modules.Clubs.Infrastructure.Persistence;
 using TheLeague.Modules.Competitions.Domain;
+using TheLeague.Modules.Competitions.Infrastructure.Persistence;
 using TheLeague.Modules.Equipment.Domain;
+using TheLeague.Modules.Equipment.Infrastructure.Persistence;
 using TheLeague.Modules.Events.Domain;
+using TheLeague.Modules.Events.Infrastructure.Persistence;
 using TheLeague.Modules.Facilities.Domain;
+using TheLeague.Modules.Facilities.Infrastructure.Persistence;
 using TheLeague.Modules.Identity.Domain;
 using TheLeague.Modules.Identity.Infrastructure.Persistence;
 using TheLeague.Modules.Members.Domain;
+using TheLeague.Modules.Members.Infrastructure.Persistence;
 using TheLeague.Modules.Memberships.Domain;
+using TheLeague.Modules.Memberships.Infrastructure.Persistence;
 using TheLeague.Modules.Payments.Domain;
+using TheLeague.Modules.Payments.Infrastructure.Persistence;
 using TheLeague.Modules.Sessions.Domain;
+using TheLeague.Modules.Sessions.Infrastructure.Persistence;
 using TheLeague.Shared.Domain.Enums;
 using TheLeague.Shared.Infrastructure.Authorization;
 
@@ -127,7 +136,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedClubsAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<ClubsDbContext>();
 
         foreach (var clubDto in SeedData.Clubs)
         {
@@ -153,7 +162,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedMembersAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<MembersDbContext>();
         var existingCount = await dbContext.Set<Member>().CountAsync();
         if (existingCount > 0) return;
 
@@ -198,7 +207,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedMembershipTypesAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<MembershipsDbContext>();
         var existingCount = await dbContext.Set<MembershipType>().CountAsync();
         if (existingCount > 0) return;
 
@@ -222,7 +231,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedMembershipsAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<MembershipsDbContext>();
         var existingCount = await dbContext.Set<Membership>().CountAsync();
         if (existingCount > 0) return;
 
@@ -249,7 +258,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedFacilitiesAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<FacilitiesDbContext>();
         var existingCount = await dbContext.Set<Facility>().CountAsync();
         if (existingCount > 0) return;
 
@@ -272,7 +281,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedEquipmentAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<EquipmentDbContext>();
         var existingCount = await dbContext.Set<EquipmentItem>().CountAsync();
         if (existingCount > 0) return;
 
@@ -297,7 +306,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedSessionsAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<SessionsDbContext>();
         var existingCount = await dbContext.Set<Session>().CountAsync();
         if (existingCount > 0) return;
 
@@ -327,7 +336,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedEventsAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<EventsDbContext>();
         var existingCount = await dbContext.Set<Event>().CountAsync();
         if (existingCount > 0) return;
 
@@ -363,7 +372,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedCompetitionsAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<CompetitionsDbContext>();
         var existingSeasons = await dbContext.Set<Season>().CountAsync();
         if (existingSeasons > 0) return;
 
@@ -413,7 +422,7 @@ public static class DatabaseSeeder
     // ─────────────────────────────────────────────────────────────────────────
     private static async Task SeedPaymentsAsync(IServiceProvider sp, ILogger logger)
     {
-        var dbContext = sp.GetRequiredService<DbContext>();
+        var dbContext = sp.GetRequiredService<PaymentsDbContext>();
         var existingCount = await dbContext.Set<Payment>().CountAsync();
         if (existingCount > 0) return;
 

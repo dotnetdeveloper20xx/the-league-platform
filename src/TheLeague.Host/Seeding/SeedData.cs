@@ -139,7 +139,7 @@ public static class SeedData
                 var gender = (memberIndex % 3 == 0) ? Gender.Female : Gender.Male;
                 var phone = $"+44 7{random.Next(100, 999)} {random.Next(100, 999)} {random.Next(1000, 9999)}";
 
-                var memberId = new Guid($"40000000-0000-{config.ClubId.ToString()[24..28]}-{i + 1:D4}-{memberIndex:D12}");
+                var memberId = new Guid($"40{memberIndex:D6}-0000-0000-0000-{memberIndex:D12}");
 
                 members.Add(new MemberSeedDto(
                     memberId, config.ClubId, memberNumber, firstName, lastName, email,

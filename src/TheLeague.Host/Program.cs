@@ -99,6 +99,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "Multi-tenant SaaS platform for sports club management",
         Contact = new OpenApiContact { Name = "The League", Email = "support@theleague.com" }
     });
+    c.CustomSchemaIds(type => type.FullName?.Replace("+", "."));
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header. Enter 'Bearer {token}'",
